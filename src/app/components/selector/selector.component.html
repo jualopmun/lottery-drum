@@ -1,0 +1,29 @@
+<mat-card class="card card-stats mb-4 mb-xl-0 w-100-p" max-width="1750">
+    <mat-card-content class="mt-2 selector-content-card">
+        <h2 class="text-center title-selector">{{ finalResult.active ? 'Result' : 'Numbers' }}</h2>
+        <div class="button-row">
+            <div class="row text-center">
+                <div class="col-sm ma-2 balls-generated">
+                    <button *ngFor="let ball of balls; let i = index"
+                      mat-fab [ngStyle]="{ 'background-color':ball.color }"
+                      (click)="selectionBall(ball)" class="ball-number-{{ i }}"
+                    >
+                      <span> {{ ball.value }} </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <ng-template [ngIf]="!finalResult.active" [ngIfElse]="finalActiveTemplate">
+            <div class="row text-center mt-4 clear-selector">
+                <a class="href" (click)="clearSelection()">Clear selection</a>
+            </div>
+        </ng-template>
+        <ng-template #finalActiveTemplate>
+            <div class="row text-center mt-2 final-result">
+                <h4 class="md-display-4" [ngStyle]="{ 'color':finalResult.color }">
+                  {{ finalResult.message }}: {{ totalWins }} €
+                </h4>
+            </div>
+        </ng-template>
+    </mat-card-content>
+</mat-card>

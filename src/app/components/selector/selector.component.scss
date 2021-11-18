@@ -1,0 +1,25 @@
+.button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.button-container {
+    display: inline-block;
+    margin: auto;
+    width: 100%;
+}
+
+.href {
+    color: #2289b8;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.selector-content-card {
+    height: 360px;
+}

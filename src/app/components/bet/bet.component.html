@@ -1,0 +1,43 @@
+<mat-card class="card card-stats mb-4 mb-xl-0 w-100-p">
+    <mat-card-content>
+        <div class="button-row">
+            <div class="row text-center">
+                <div class="col-sm ma-2 text-center balls-selected">
+                    <button *ngFor="let ball of ballsSelected; let i = index"
+                      mat-fab [ngStyle]="{ 'background-color': ball.color }" class="ball-select-{{ i }}"
+                    >
+                      <span> {{ ball.value }} </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center mt-4">
+            <div class="form-group col col-sm-8">
+                <div class="input-group mb-3 input-group-lg right-text-styling w-75 mx-auto">
+                    <span class="input-group-text" id="input-number">{{ contBallsSelected }}x</span>
+                    <input class="form-control form-check-input"
+                      [(ngModel)]="bet" matInput (ngModelChange)="calculateProfit()"
+                      type="number" name="bet" [min]="minimum" for="input-number"
+                    />
+                </div>
+            </div>
+            <div class="col col-auto message-ok" *ngIf="contBallsSelected > 0 && bet >= minimum">
+                <h2><span class="badge bg-primary">OK</span></h2>
+            </div>
+            <div class="col col-auto warning-minimum" *ngIf="bet < minimum">
+                <h3><span class="badge bg-danger"> Minimum: {{ minimum }}€</span></h3>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<div class="row text-center mt-2 start-game">
+    <h3 class="md-display-4"> Total: {{ total }} €</h3>
+    <button class="btn btn-primary btn-lg right-text-styling w-75 mx-auto button-start-game"
+      color="primary" (click)="startGame()"
+      [disabled]="this.contBallsSelected === 0 || this.bet < this.minimum || this.playGame"
+    >
+      Place belt
+    </button>
+</div>
